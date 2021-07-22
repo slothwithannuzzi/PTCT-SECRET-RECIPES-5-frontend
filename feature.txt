@@ -1,1 +1,1 @@
-testing to check on permissions
+This will have a Create-React-App; please follow the readme for more details. 
