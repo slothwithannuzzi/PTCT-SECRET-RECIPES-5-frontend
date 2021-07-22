@@ -18,14 +18,19 @@ function App() {
         <Bar>
           <Link to="/">Home</Link>
           <Link to="">Recipes</Link>
-          <Link to="">Sign Up</Link>
+          <Link to="/register">Sign Up</Link>
           <Link to="/add">Add Recipe</Link>
         </Bar>
       </Head>
       <Home />
       <hr />
-      <Route path="/add">
+      <Route path="/register">
         <RecipeForm />
+      </Route>
+      <hr />
+      <hr />
+      <Route path="/sign-up">
+        <SignUpForm />
       </Route>
       <hr />
       <Footer />
