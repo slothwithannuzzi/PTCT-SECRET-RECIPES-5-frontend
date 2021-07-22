@@ -65,7 +65,7 @@ export default function SignupForm() {
     //post newUser to endpoint, USING FAKE API AS PLACEHOLDER
     axios
       .post("https://reqres.in/api/users", newUser)
-      .then((res) => console.log("NEW RECIPE RESPONSE", res))
+      .then((res) => console.log("NEW USER RESPONSE", res))
       .catch((err) => {
         debugger;
       });
@@ -86,7 +86,7 @@ export default function SignupForm() {
           <div className="input-div">
             <div className="error-div">{formErrors.name}</div>
             <label>
-              Name
+              Name:
               <input
                 type="text"
                 name="name"
@@ -103,7 +103,7 @@ export default function SignupForm() {
                    <div className="input-div">
             <div className="error-div">{formErrors.password}</div>
             <label>
-              Password
+              Password:
               <input
                 type="text"
                 name="password"
@@ -120,10 +120,10 @@ export default function SignupForm() {
                     <div className="input-div">
             <div className="error-div">{formErrors.email}</div>
             <label>
-              Email
+              Email:
               <input
                 type="text"
-                name="password"
+                name="email"
                 value={userInfo.email}
                 onChange={onChange}
                 placeholder="enter email"

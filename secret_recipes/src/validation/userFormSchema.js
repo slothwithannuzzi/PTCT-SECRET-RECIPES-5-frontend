@@ -14,4 +14,5 @@ export default yup.object().shape({
   email: yup
   .string()
   .required("Email required")
+  .email(),
 });
