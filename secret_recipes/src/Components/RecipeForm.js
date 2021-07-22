@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import * as yup from "yup";
+import schema from "../validation/recipeFormSchema";
 
 //Initial form state
 const initialFormValues = {
@@ -10,17 +12,48 @@ const initialFormValues = {
   instructions: "",
 };
 
+//initial form errors
+const initialFormErrors = {
+  name: "",
+  source: "",
+  category: "",
+  ingredients: "",
+  instructions: "",
+};
+
+//disable submit button
+const initialDisabled = true;
+
 export default function RecipeForm() {
   //form state
   const [formValues, setFormValues] = useState(initialFormValues);
+  //form errors state
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+  //disable button state
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   //helper functions
+
+  //validation helper
+  const validate = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => setFormErrors({ ...formErrors, [name]: "" }))
+      .catch((err) => {
+        setFormErrors({ ...formErrors, [name]: err.errors[0] });
+      });
+  };
+  //change handler
   const onChange = (evt) => {
     const { name, value } = evt.target;
+    //validate formValues
+    validate(name, value);
     //set onChange to state
     setFormValues({ ...formValues, [name]: value });
   };
 
+  //submit handler
   const onSubmit = (evt) => {
     //stop default reload upon submission
     evt.preventDefault();
@@ -43,6 +76,11 @@ export default function RecipeForm() {
       });
     setFormValues(initialFormValues);
   };
+
+  //setDisabled accordingly every time formValues changes
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => setDisabled(!valid));
+  }, [formValues]);
   return (
     <div className="form-container">
       <h2>Add Your Favorite Recipe</h2>
@@ -51,6 +89,7 @@ export default function RecipeForm() {
         <div className="form-inputs">
           {/* name text input */}
           <div className="input-div">
+            <div className="error-div">{formErrors.name}</div>
             <label>
               Name
               <input
@@ -67,6 +106,7 @@ export default function RecipeForm() {
 
           {/* source text input */}
           <div className="input-div">
+            <div className="error-div">{formErrors.source}</div>
             <label>
               Source
               <input
@@ -83,6 +123,7 @@ export default function RecipeForm() {
 
           {/* category dropdown */}
           <div className="input-div">
+            <div className="error-div">{formErrors.category}</div>
             <label>
               Category
               <select
@@ -104,6 +145,7 @@ export default function RecipeForm() {
 
           {/* ingredients text area */}
           <div className="input-div">
+            <div className="error-div">{formErrors.ingredients}</div>
             <label>
               Ingredients
               <input
@@ -118,6 +160,7 @@ export default function RecipeForm() {
 
           {/* instructions textarea */}
           <div className="input-div">
+            <div className="error-div">{formErrors.instructions}</div>
             <label>
               Instructions
               <input
@@ -130,7 +173,7 @@ export default function RecipeForm() {
             </label>
           </div>
         </div>
-        <button>Submit Recipe</button>
+        <button disabled={disabled}>Submit Recipe</button>
       </form>
     </div>
   );
