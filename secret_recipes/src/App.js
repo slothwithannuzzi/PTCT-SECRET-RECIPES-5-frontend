@@ -24,12 +24,12 @@ function App() {
       </Head>
       <Home />
       <hr />
-      <Route path="/register">
+      <Route path="/add">
         <RecipeForm />
       </Route>
       <hr />
       <hr />
-      <Route path="/sign-up">
+      <Route path="/register">
         <SignUpForm />
       </Route>
       <hr />

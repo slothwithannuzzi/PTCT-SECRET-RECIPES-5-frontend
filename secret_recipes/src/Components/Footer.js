@@ -11,7 +11,7 @@ function Footer() {
             <h3>MENU</h3>
             <a href="">Home</a>
             <a href="">Sign up</a>
-            <a href="">Recipes</a>
+            <a href="/add">Recipes</a>
           </Menu>
           <Connect>
             <h3>Contact</h3>
