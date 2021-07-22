@@ -8,12 +8,12 @@ export default function RecipeList(props) {
   return (
     <Container className="foodListContainer">
       <Image className="homeImage" src={Recipes} alt="fancy-food" />
-      {foods.map((food) => (
-        <Card className="food-list" key={food.id}>
+      {foods.map((food, index) => (
+        <Card className="food-list" key={index}>
           <h2>{food.recipe_name}</h2>
           <p>By {food.source}</p>
           <h3>Indigredients</h3>
-          <p>{food.ingredienrs}</p>
+          <p>{food.ingredients}</p>
           <h3>Instructions</h3>
           <p>{food.instructions}</p>
         </Card>
