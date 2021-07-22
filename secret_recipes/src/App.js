@@ -1,23 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import styled from "styled-components";
 import Home from "./Components/Home";
-import Footer from "./Components/Footer";
+import RecipeList from "./Components/RecipeList";
+// import Footer from "./Components/Footer";
+import data from "./data";
+
+function fetch() {
+  return Promise.resolve({ success: true, data });
+}
 
 function App() {
+  const [list, setList] = useState([]);
+  useEffect(() => {
+    fetch().then((response) => setList(response.data));
+  }, []);
+
   return (
     <div>
       <Head>
         <Title>Secret Recipes</Title>
         <Bar>
           <Link to="/">Home</Link>
-          <Link to="">Recipes</Link>
-          <Link to="">Sign Up</Link>
+          <Link to="/recipe-list">Recipes</Link>
+          <Link to="/sign-up">Sign Up</Link>
         </Bar>
       </Head>
-      <Home />
+
+      <Route exact path="/">
+        <Home homeFood={list} />
+      </Route>
       <hr />
-      <Footer />
+      <Route path="/recipe-list">
+        <RecipeList foods={list} />
+      </Route>
+      <Route path="/sign-up"></Route>
+
+      {/* <Footer /> */}
     </div>
   );
 }
