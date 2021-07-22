@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 //Initial form state
 const initialFormValues = {
@@ -20,8 +21,27 @@ export default function RecipeForm() {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const onSubmit = () => {
-    debugger;
+  const onSubmit = (evt) => {
+    //stop default reload upon submission
+    evt.preventDefault();
+
+    //collect new formValues
+    const newRecipe = {
+      name: formValues.name.trim(),
+      source: formValues.source.trim(),
+      category: formValues.category,
+      ingredients: formValues.ingredients.trim(),
+      instructions: formValues.instructions.trim(),
+    };
+
+    //post newRecipe to endpoint, USING FAKE API AS PLACEHOLDER
+    axios
+      .post("https://reqres.in/api/users", newRecipe)
+      .then((res) => console.log("NEW RECIPE RESPONSE", res))
+      .catch((err) => {
+        debugger;
+      });
+    setFormValues(initialFormValues);
   };
   return (
     <div className="form-container">
@@ -77,6 +97,7 @@ export default function RecipeForm() {
                 <option value="dessert">Dessert</option>
                 <option value="side">Side Dish</option>
                 <option value="appetizer">Appetizer</option>
+                <option value="miscellaneous">Miscellaneous</option>
               </select>
             </label>
           </div>
