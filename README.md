@@ -1,3 +1,3 @@
-# frontend
+## Front-End for Secret Recipes
 
-edit one
+Please use 'npm start' to run.
