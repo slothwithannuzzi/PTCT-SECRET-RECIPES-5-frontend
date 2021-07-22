@@ -4,6 +4,9 @@ import styled from "styled-components";
 import Home from "./Components/Home";
 import Footer from "./Components/Footer";
 
+//import RecipeForm component
+import RecipeForm from "./Components/RecipeForm";
+
 function App() {
   return (
     <div>
@@ -13,9 +16,14 @@ function App() {
           <Link to="/">Home</Link>
           <Link to="">Recipes</Link>
           <Link to="">Sign Up</Link>
+          <Link to="/add">Add Recipe</Link>
         </Bar>
       </Head>
       <Home />
+      <hr />
+      <Route path="/add">
+        <RecipeForm />
+      </Route>
       <hr />
       <Footer />
     </div>
