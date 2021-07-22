@@ -69,13 +69,13 @@ export default function SignupForm() {
       .catch((err) => {
         debugger;
       });
-    setFormValues(initialFormValues);
+    setUserInfo(initFormValues);
   };
 
   //disabledForm accordingly every time formValues changes
   useEffect(() => {
-    schema.isValid(formValues).then((valid) => setDisabled(!valid));
-  }, [formValues]);
+    schema.isValid(userInfo).then((valid) => setDisabled(!valid));
+  }, [userInfo]);
   return (
     <div className="form-container">
       <h2>Sign up to start adding your favorite recipes!</h2>
@@ -90,7 +90,7 @@ export default function SignupForm() {
               <input
                 type="text"
                 name="name"
-                value={formValues.name}
+                value={userInfo.name}
                 onChange={onChange}
                 placeholder="Enter your name"
                 maxLength="18"
@@ -107,7 +107,7 @@ export default function SignupForm() {
               <input
                 type="text"
                 name="password"
-                value={formValues.password}
+                value={userInfo.password}
                 onChange={onChange}
                 placeholder="enter a password"
                 maxLength="18"
@@ -124,7 +124,7 @@ export default function SignupForm() {
               <input
                 type="text"
                 name="password"
-                value={formValues.email}
+                value={userInfo.email}
                 onChange={onChange}
                 placeholder="enter email"
                 maxLength="30"

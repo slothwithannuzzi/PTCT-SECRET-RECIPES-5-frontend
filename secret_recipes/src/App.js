@@ -7,6 +7,9 @@ import Footer from "./Components/Footer";
 //import RecipeForm component
 import RecipeForm from "./Components/RecipeForm";
 
+//import user Sign Up form component
+import SignUpForm from "./Components/UserForm";
+
 function App() {
   return (
     <div>
