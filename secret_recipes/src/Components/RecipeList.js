@@ -6,19 +6,21 @@ export default function RecipeList(props) {
   const { foods } = props;
 
   return (
-    <Container className="foodListContainer">
+    <div>
       <Image className="homeImage" src={Recipes} alt="fancy-food" />
-      {foods.map((food, index) => (
-        <Card className="food-list" key={index}>
-          <h2>{food.recipe_name}</h2>
-          <p>By {food.source}</p>
-          <h3>Indigredients</h3>
-          <p>{food.ingredients}</p>
-          <h3>Instructions</h3>
-          <p>{food.instructions}</p>
-        </Card>
-      ))}
-    </Container>
+      <Container className="foodListContainer">
+        {foods.map((food, index) => (
+          <Card className="food-list" key={index}>
+            <h2>{food.recipe_name}</h2>
+            <p>By {food.source}</p>
+            <h3>Indigredients</h3>
+            <p>{food.ingredients}</p>
+            <h3>Instructions</h3>
+            <p>{food.instructions}</p>
+          </Card>
+        ))}
+      </Container>
+    </div>
   );
 }
 
@@ -29,12 +31,18 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  filter: drop-shadow(0 0 3px gray);
+  text-align: center;
 `;
 
 const Card = styled.div`
+  z-index: 1;
   width: 250px;
-  margin: 0 10px 32px;
+  margin: 0 15px 32px;
   cursor: pointer;
+  background: rgba(255, 255, 255, 255);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
 `;
 
 const Image = styled.img`

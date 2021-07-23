@@ -32,11 +32,11 @@ function App() {
       <Route exact path="/">
         <Home homeFood={list} />
       </Route>
-      <hr />
+      {/* <hr /> */}
       <Route path="/add">
         <RecipeForm />
       </Route>
-      <hr />
+      {/* <hr /> */}
       <Route path="/recipe-list">
         <RecipeList foods={list} />
       </Route>
