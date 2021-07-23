@@ -133,7 +133,7 @@ export default function SignupForm() {
             </label>
           </div>
         </div>
-        <button disabled={disabled}>Submit Recipe</button>
+        <button disabled={disabled}>Sign me up!</button>
       </form>
     </div>
   );
