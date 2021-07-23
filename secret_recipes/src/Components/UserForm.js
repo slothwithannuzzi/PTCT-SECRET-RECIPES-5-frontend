@@ -64,10 +64,13 @@ export default function SignupForm() {
 
     //post newUser to endpoint, USING FAKE API AS PLACEHOLDER
     axios
-      .post("https://reqres.in/api/users", newUser)
-      .then((res) => console.log("NEW USER RESPONSE", res))
+      .post("https://ptct-secret-recipes.herokuapp.com/api/auth/register", newUser)
+      .then((res) => {
+        console.log("NEW USER RESPONSE", res)
+    })
       .catch((err) => {
         debugger;
+        console.log(err)
       });
     setUserInfo(initFormValues);
   };
@@ -105,7 +108,7 @@ export default function SignupForm() {
             <label>
               Password:
               <input
-                type="text"
+                type="password"
                 name="password"
                 value={userInfo.password}
                 onChange={onChange}

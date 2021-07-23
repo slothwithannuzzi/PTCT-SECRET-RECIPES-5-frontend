@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Redirect } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 
 const PrivateRoute = props => {
@@ -7,9 +7,12 @@ const PrivateRoute = props => {
         return (
             <Route {...props} />
         )
-
+    }
+        else {
         return (
             <Redirect to = '/' /*login page*/ />
         )
     }
 }
+
+export default PrivateRoute;
