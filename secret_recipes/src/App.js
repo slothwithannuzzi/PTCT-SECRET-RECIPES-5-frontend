@@ -7,9 +7,13 @@ import data from "./data";
 //import RecipeForm component
 import RecipeForm from "./Components/RecipeForm";
 
+
+//import user Sign Up form component
+import SignUpForm from "./Components/UserForm";
+
 function fetch() {
   return Promise.resolve({ success: true, data });
-}
+
 
 function App() {
   const [list, setList] = useState([]);
@@ -23,8 +27,13 @@ function App() {
         <Title>Secret Recipes</Title>
         <Bar>
           <Link to="/">Home</Link>
+
+          <Link to="">Recipes</Link>
+          <Link to="/register">Sign Up</Link>
+
           <Link to="/recipe-list">Recipes</Link>
           <Link to="">Sign Up</Link>
+
           <Link to="/add">Add Recipe</Link>
         </Bar>
       </Head>
@@ -36,10 +45,20 @@ function App() {
       <Route path="/add">
         <RecipeForm />
       </Route>
+
+      <hr />
+      <hr />
+      <Route path="/register">
+        <SignUpForm />
+      </Route>
+      <hr />
+      <Footer />
+
       {/* <hr /> */}
       <Route path="/recipe-list">
         <RecipeList foods={list} />
       </Route>
+
     </div>
   );
 }

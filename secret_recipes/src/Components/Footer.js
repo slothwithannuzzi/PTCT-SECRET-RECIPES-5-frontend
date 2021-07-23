@@ -9,6 +9,10 @@ function Footer() {
         <TextConatiner>
           <Menu>
             <h3>MENU</h3>
+
+            <a href="">Home</a>
+            <a href="">Sign up</a>
+            <a href="/add">Recipes</a>
             <a href="/">Home</a>
             <a href="/">Sign up</a>
             <a href="/">Recipes</a>
