@@ -27,7 +27,7 @@ const Login = props => {
         console.log(res)
         //placeholder function until I can figure out what's going on with the endpoints
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log('something went wrong', err))
     setFormValues(initialValues)
   
   }

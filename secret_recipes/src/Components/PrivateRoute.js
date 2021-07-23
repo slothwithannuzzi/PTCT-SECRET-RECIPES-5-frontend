@@ -10,7 +10,7 @@ const PrivateRoute = props => {
     }
         else {
         return (
-            <Redirect to = '/' /*login page*/ />
+            <Redirect to = '/login' /*login page*/ />
         )
     }
 }
