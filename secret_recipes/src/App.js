@@ -11,6 +11,7 @@ import Footer from "./Components/Footer";
 
 //import user Sign Up form component
 import SignUpForm from "./Components/UserForm";
+import axios from "axios";
 
 const Title = styled.h1`
   font-size: 30px;
@@ -45,9 +46,13 @@ const Bar = styled.div`
 
 function App() {
   const [list, setList] = useState([]);
-  // useEffect(() => {
-  //   fetch().then((response) => setList(response.data));
-  // }, []);
+  useEffect(() => {
+    axios.get('https://ptct-secret-recipes.herokuapp.com/api/recipes')
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => console.log('failed to retrieve data:', err))
+  }, []);
 
   return (
     <div>
