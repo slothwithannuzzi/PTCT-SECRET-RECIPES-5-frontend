@@ -9,9 +9,13 @@ function Footer() {
         <TextConatiner>
           <Menu>
             <h3>MENU</h3>
+
             <a href="">Home</a>
             <a href="">Sign up</a>
             <a href="/add">Recipes</a>
+            <a href="/">Home</a>
+            <a href="/">Sign up</a>
+            <a href="/">Recipes</a>
           </Menu>
           <Connect>
             <h3>Contact</h3>
@@ -42,7 +46,7 @@ const TextConatiner = styled.section`
   margin: 4% 15%;
 `;
 
-const Menu = styled.a`
+const Menu = styled.div`
   display: flex;
   flex-direction: column;
   color: gray;
