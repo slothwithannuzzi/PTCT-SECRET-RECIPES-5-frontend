@@ -12,6 +12,7 @@ import Footer from "./Components/Footer";
 //import user Sign Up form component
 import SignUpForm from "./Components/UserForm";
 import axios from "axios";
+import Login from "./Components/Login";
 
 const Title = styled.h1`
   font-size: 30px;
@@ -60,6 +61,7 @@ function App() {
         <Title>Secret Recipes</Title>
         <Bar>
           <Link to="/">Home</Link>
+          <Link to='/login'>Log In</Link>
           <Link to="/register">Sign Up</Link>
           <Link to="/recipe-list">Recipes</Link>
           <Link to="/add">Add Recipe</Link>
@@ -71,6 +73,9 @@ function App() {
       </Route>
       <Route path="/add">
         <RecipeForm />
+      </Route>
+      <Route path='/login'>
+        <Login/>
       </Route>
       <Route path="/register">
         <SignUpForm />
