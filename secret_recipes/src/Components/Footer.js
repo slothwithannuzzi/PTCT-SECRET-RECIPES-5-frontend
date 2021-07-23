@@ -12,9 +12,7 @@ function Footer() {
 
             <a href="">Home</a>
             <a href="">Sign up</a>
-            <a href="/add">Recipes</a>
-            <a href="/">Home</a>
-            <a href="/">Sign up</a>
+            <a href="/add">Add Recipe</a>
             <a href="/">Recipes</a>
           </Menu>
           <Connect>
