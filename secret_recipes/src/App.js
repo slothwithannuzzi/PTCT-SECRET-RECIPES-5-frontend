@@ -3,6 +3,7 @@ import { Route, Link, Switch } from "react-router-dom";
 import styled from "styled-components";
 import Home from "./Components/Home";
 import RecipeList from "./Components/RecipeList";
+//This is Dummy-data
 import data from "./data";
 //import RecipeForm component
 import RecipeForm from "./Components/RecipeForm";
