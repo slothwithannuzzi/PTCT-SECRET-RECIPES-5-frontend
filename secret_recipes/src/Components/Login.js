@@ -25,9 +25,13 @@ const Login = props => {
     axios.post('https://ptct-secret-recipes.herokuapp.com/api/auth/login', formValues)
     .then (res => {
         console.log(res)
-        //placeholder function until I can figure out what's going on with the endpoints
+        setError('');
+        localStorage.setItem('token', res.data.token)
     })
-    .catch(err => console.log('something went wrong', err))
+    .catch(err => {
+        console.log(err);
+        setError("Invalid username or password.")
+    })
     setFormValues(initialValues)
   
   }
