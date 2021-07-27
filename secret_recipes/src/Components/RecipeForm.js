@@ -25,8 +25,73 @@ const initialFormErrors = {
 //disable submit button
 const initialDisabled = true;
 
+// ***********STYLED COMPONENTS*********
+// ***********STYLED COMPONENTS*********
+const FormSection = styled.section`
+  h2 {
+    background-color: #98fb98;
+    color: #f5fffa;
+    padding: 2%;
+    font-size: 3.7rem;
+    width: 90%;
+    margin: 0 auto;
+  }
+`;
 
-export default function RecipeForm() {
+const StyledForm = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const FormInputsDiv = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  border: 1 px solid orange;
+  .input-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3% 1.5%;
+  }
+  .odd {
+    background-color: #98fb98;
+    color: #f5fffa;
+  }
+  .even {
+    background-color: #f0fff0;
+    color: #00ff00;
+  }
+  .error-div {
+    color: red;
+    font-weight: bold;
+  }
+  label {
+    font-size: 2rem;
+    font-weight: bold;
+    padding-left: 1%;
+  }
+  input,
+  select,
+  textarea {
+    line-height: 1.7;
+  }
+  button {
+    text-decoration: none;
+    font-size: 2rem;
+    line-height: 2.3;
+    font-weight: bold;
+    background-color: #98fb98;
+    color: #f5fffa;
+  }
+`;
+
+
+export default function RecipeForm(props) {
+
+  const {list, setList } = props;
+
   //form state
   const [formValues, setFormValues] = useState(initialFormValues);
   //form errors state
