@@ -138,16 +138,16 @@ export default function SignupForm() {
 
     //collect new user data
     const newUser = {
-      name: userInfo.name.trim(),
-      password: userInfo.password.trim(),
-      email: userInfo.email.trim(),
+      "username": userInfo.name.trim(),
+      "password": userInfo.password.trim(),
+      "email": userInfo.email.trim(),
     };
 
-    //post newUser to endpoint, USING FAKE API AS PLACEHOLDER
+    //post newUser to endpoint
     axios
       .post("https://ptct-secret-recipes.herokuapp.com/api/auth/register", newUser)
       .then((res) => {
-        console.log("NEW USER RESPONSE", res)
+        console.log("NEW USER RESPONSE", res)    
     })
       .catch((err) => {
         debugger;

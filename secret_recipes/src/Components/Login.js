@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from 'axios'
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 
 const Login = props => {
@@ -12,6 +12,8 @@ const Login = props => {
   const [formValues, setFormValues] = useState(initialValues)
 
   const [error, setError] = useState('');
+
+  const { push } = useHistory();
 
   const handleChange = e => {
     setFormValues({
@@ -27,6 +29,7 @@ const Login = props => {
         console.log(res)
         setError('');
         localStorage.setItem('token', res.data.token)
+        push('/recipe-list')
     })
     .catch(err => {
         console.log(err);

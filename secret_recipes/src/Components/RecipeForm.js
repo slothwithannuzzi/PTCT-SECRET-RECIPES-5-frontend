@@ -25,74 +25,6 @@ const initialFormErrors = {
 //disable submit button
 const initialDisabled = true;
 
-// ***********STYLED COMPONENTS*********
-// ***********STYLED COMPONENTS*********
-const FormSection = styled.section`
-  h2 {
-    background-color: #98fb98;
-    color: #f5fffa;
-    padding: 2%;
-    font-size: 3.7rem;
-    width: 90%;
-    margin: 0 auto;
-  }
-`;
-
-const StyledForm = styled.form`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const FormInputsDiv = styled.div`
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  border: 1 px solid orange;
-
-  .input-div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 3% 1.5%;
-  }
-
-  .odd {
-    background-color: #98fb98;
-    color: #f5fffa;
-  }
-
-  .even {
-    background-color: #f0fff0;
-    color: #00ff00;
-  }
-
-  .error-div {
-    color: red;
-    font-weight: bold;
-  }
-
-  label {
-    font-size: 2rem;
-    font-weight: bold;
-    padding-left: 1%;
-  }
-
-  input,
-  select,
-  textarea {
-    line-height: 1.7;
-  }
-
-  button {
-    text-decoration: none;
-    font-size: 2rem;
-    line-height: 2.3;
-    font-weight: bold;
-    background-color: #98fb98;
-    color: #f5fffa;
-  }
-`;
 
 export default function RecipeForm() {
   //form state
@@ -130,21 +62,29 @@ export default function RecipeForm() {
 
     //collect new formValues
     const newRecipe = {
-      name: formValues.name.trim(),
-      source: formValues.source.trim(),
-      category: formValues.category,
-      ingredients: formValues.ingredients.trim(),
-      instructions: formValues.instructions.trim(),
+      "user_id": 1,
+      "recipe_name": formValues.name.trim(),
+      "source": formValues.source.trim(),
+      "ingredients": formValues.ingredients.trim(),
+      "category": formValues.category,
+      "instructions": formValues.instructions.trim(),
     };
 
     //post newRecipe to endpoint, USING FAKE API AS PLACEHOLDER
     axios
-      .post("https://reqres.in/api/users", newRecipe)
-      .then((res) => console.log("NEW RECIPE RESPONSE", res))
+      .post("https://ptct-secret-recipes.herokuapp.com/api/recipes", newRecipe)
+      .then((res) => {
+        console.log("NEW RECIPE RESPONSE", res)
+        axios.get('https://ptct-secret-recipes.herokuapp.com/api/recipes')
+        .then(res => setList(res.data))
+        .catch(err => console.log(err))
+      })
       .catch((err) => {
         debugger;
       });
     setFormValues(initialFormValues);
+    
+
   };
 
   //setDisabled accordingly every time formValues changes

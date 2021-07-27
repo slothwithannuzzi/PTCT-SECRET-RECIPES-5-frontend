@@ -10,7 +10,7 @@ function Home(props) {
     <div>
       <Image className="homeImage" src={Recipes} alt="fancy-food" />
       <Container className="homeList">
-        {homeFood.map((home, index) => (
+        {/* {homeFood.map((home, index) => (
           <Card className="food-list" key={index}>
             <h2>{home.recipe_name}</h2>
             <p>By {home.source}</p>
@@ -19,7 +19,7 @@ function Home(props) {
             <h3>Instructions</h3>
             <p>{home.instructions}</p>
           </Card>
-        ))}
+        ))} */}
       </Container>
       <hr />
       <Footer />
