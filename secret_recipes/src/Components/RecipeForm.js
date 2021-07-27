@@ -24,7 +24,10 @@ const initialFormErrors = {
 //disable submit button
 const initialDisabled = true;
 
-export default function RecipeForm() {
+export default function RecipeForm(props) {
+
+  const { list, setList } = props;
+
   //form state
   const [formValues, setFormValues] = useState(initialFormValues);
   //form errors state
@@ -60,21 +63,24 @@ export default function RecipeForm() {
 
     //collect new formValues
     const newRecipe = {
-      name: formValues.name.trim(),
-      source: formValues.source.trim(),
-      category: formValues.category,
-      ingredients: formValues.ingredients.trim(),
-      instructions: formValues.instructions.trim(),
+      "user_id": 1,
+      "recipe_name": formValues.name.trim(),
+      "source": formValues.source.trim(),
+      "ingredients": formValues.ingredients.trim(),
+      "category": formValues.category,
+      "instructions": formValues.instructions.trim(),
     };
 
     //post newRecipe to endpoint, USING FAKE API AS PLACEHOLDER
     axios
-      .post("https://reqres.in/api/users", newRecipe)
+      .post("https://reqres.in/api/recipes", newRecipe)
       .then((res) => console.log("NEW RECIPE RESPONSE", res))
       .catch((err) => {
         debugger;
       });
     setFormValues(initialFormValues);
+    
+
   };
 
   //setDisabled accordingly every time formValues changes

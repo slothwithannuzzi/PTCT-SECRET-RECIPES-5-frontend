@@ -71,14 +71,16 @@ function App() {
           <Link to="/register">Sign Up</Link>
           <Link to="/recipe-list">Recipes</Link>
           <Link to="/add">Add Recipe</Link>
-          <Link onClick = {logout}>Log Out</Link>
+          <Link to = '/' onClick = {logout}>Log Out</Link>
         </Bar>
       </Head>
     <Switch>
       <Route exact path="/">
         <Home homeFood={list} />
       </Route>
-      <PrivateRoute exact path="/add" component = {RecipeForm}/>
+      <PrivateRoute exact path="/add">
+        <RecipeForm list = {list} setList = {setList}/>
+      </PrivateRoute>
       <Route path='/login'>
         <Login/>
       </Route>

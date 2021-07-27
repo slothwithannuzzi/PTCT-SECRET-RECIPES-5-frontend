@@ -62,11 +62,12 @@ export default function SignupForm() {
       email: userInfo.email.trim(),
     };
 
-    //post newUser to endpoint, USING FAKE API AS PLACEHOLDER
+    //post newUser to endpoint
     axios
       .post("https://ptct-secret-recipes.herokuapp.com/api/auth/register", newUser)
       .then((res) => {
         console.log("NEW USER RESPONSE", res)
+      
     })
       .catch((err) => {
         debugger;
