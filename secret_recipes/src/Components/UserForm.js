@@ -66,8 +66,7 @@ export default function SignupForm() {
     axios
       .post("https://ptct-secret-recipes.herokuapp.com/api/auth/register", newUser)
       .then((res) => {
-        console.log("NEW USER RESPONSE", res)
-      
+        console.log("NEW USER RESPONSE", res)    
     })
       .catch((err) => {
         debugger;
