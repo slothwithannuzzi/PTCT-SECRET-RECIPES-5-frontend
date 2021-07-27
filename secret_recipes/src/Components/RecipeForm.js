@@ -73,7 +73,7 @@ export default function RecipeForm(props) {
 
     //post newRecipe to endpoint, USING FAKE API AS PLACEHOLDER
     axios
-      .post("https://reqres.in/api/recipes", newRecipe)
+      .post("https://ptct-secret-recipes.herokuapp.com/api/recipes", newRecipe)
       .then((res) => console.log("NEW RECIPE RESPONSE", res))
       .catch((err) => {
         debugger;
