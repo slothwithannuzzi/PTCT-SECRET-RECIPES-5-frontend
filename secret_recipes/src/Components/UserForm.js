@@ -57,9 +57,9 @@ export default function SignupForm() {
 
     //collect new user data
     const newUser = {
-      name: userInfo.name.trim(),
-      password: userInfo.password.trim(),
-      email: userInfo.email.trim(),
+      "username": userInfo.name.trim(),
+      "password": userInfo.password.trim(),
+      "email": userInfo.email.trim(),
     };
 
     //post newUser to endpoint
