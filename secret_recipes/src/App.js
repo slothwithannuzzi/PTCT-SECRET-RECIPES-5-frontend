@@ -88,7 +88,7 @@ function App() {
         <SignUpForm />
       </Route>
       <PrivateRoute path="/recipe-list">
-        <RecipeList foods={list} />
+        <RecipeList foods={list} setFoods = {setList}/>
       </PrivateRoute>
     </Switch>
 
