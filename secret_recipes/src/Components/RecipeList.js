@@ -1,13 +1,42 @@
+import axios from "axios";
 import React from "react";
 import styled from "styled-components";
 import Recipes from "./Recipes-two.jpg";
 
-//Styled-Components
+export default function RecipeList(props) {
+  const { foods, setFoods } = props;
 
-const Image = styled.img`
-  width: 100%;
-  position: absolute;
-`;
+
+  const deleteHandler = (id) => {
+    axios.delete(`https://ptct-secret-recipes.herokuapp.com/api/recipes/${id}`)
+    .then(res =>{ 
+      console.log('Deleted:', res)
+      axios.get('https://ptct-secret-recipes.herokuapp.com/api/recipes')
+      .then(res => setFoods(res.data))
+      .catch(err => console.log(err))
+  })
+    .catch(err => console.log(err))
+  }
+
+  return (
+    <div>
+      <Image className="homeImage" src={Recipes} alt="fancy-food" />
+      <Container className="foodListContainer">
+        {foods.map((food, index) => (
+          <Card className="food-list" key={index}>
+            <h2>{food.recipe_name}</h2>
+            <p>By {food.source}</p>
+            <h3>Ingredients</h3>
+            <p>{food.ingredients}</p>
+            <h3>Instructions</h3>
+            <p>{food.instructions}</p>
+            <button onClick = {() => deleteHandler(food.recipe_id)}>Delete</button>
+          </Card>
+        ))}
+      </Container>
+    </div>
+  );
+}
 
 const Text = styled.h1`
   // border: 1px solid black;
