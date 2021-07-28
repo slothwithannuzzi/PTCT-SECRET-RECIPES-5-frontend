@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
@@ -91,7 +92,7 @@ const Icon = styled.div`
 function Footer() {
   return (
     <div>
-      <Title href="/">Secret Recipes</Title>
+      <Title>Secret Recipes</Title>
       <TextConatiner>
         <Menu>
           <TextH3>MENU</TextH3>
@@ -106,16 +107,24 @@ function Footer() {
           <TextH3>Contact</TextH3>
           <Icons className="icons">
             <Icon className="email">
-              <MailOutlineIcon style={{ fontSize: 30 }} />
+              <a href="mailto:secret-family-recipes@gmail.com">
+                <MailOutlineIcon style={{ fontSize: 35 }} />
+              </a>
             </Icon>
-            <Icon className="twitter" href="https://twitter.com/">
-              <TwitterIcon style={{ fontSize: 30 }} to="www.google.com" />
+            <Icon className="twitter">
+              <a href="https://www.twitter.com/">
+                <TwitterIcon style={{ fontSize: 35 }} to="www.google.com" />
+              </a>
             </Icon>
-            <Icon className="insta" href="https://www.instagram.com/">
-              <InstagramIcon style={{ fontSize: 30 }} />
+            <Icon className="insta">
+              <a href="https://www.instagram.com/">
+                <InstagramIcon style={{ fontSize: 35 }} />
+              </a>
             </Icon>
-            <Icon className="facebook" href="https://www.facebook.com/">
-              <FacebookIcon style={{ fontSize: 30 }} />
+            <Icon className="facebook">
+              <a href="https://www.facebook.com/">
+                <FacebookIcon style={{ fontSize: 35 }} />
+              </a>
             </Icon>
           </Icons>
         </Connect>
