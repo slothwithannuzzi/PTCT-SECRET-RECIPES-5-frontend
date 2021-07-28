@@ -12,21 +12,6 @@ const Image = styled.img`
   width: 100%;
   position: absolute;
   z-index: -1;
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: inherit;
-    background-clip: content-box;
-    width: 100%;
-    height: 100%;
-    padding: 50px 0;
-    padding-left: calc(30% - 50px);
-    padding-right: 50px;
-    -webkit-filter: blur(5px);
-    filter: blur(5px);
-  }
 `;
 
 const Center = styled.div`
@@ -40,8 +25,8 @@ const Container = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 30px;
   margin: 17% auto;
-  padding: 8% 0%;
-  width: 60%;
+  padding: 1% 0%;
+  width: 30%;
   text-align: center;
   line-height: 2;
   display: flex;
@@ -59,11 +44,17 @@ const Container = styled.div`
   }
 
   @media (max-width: 625px) {
-    border: 1px solid black;
+    // border: 1px solid black;
     background: white;
     margin: 68% auto;
     padding: 5% 5%;
     border: 0;
+  }
+  @media (max-width: 415px) {
+    // border: 1px solid black;
+    background: white;
+    margin: 68% auto;
+    padding: 0 50%;
   }
 `;
 

@@ -23,7 +23,6 @@ const Head = styled.nav`
   top: 2rem;
   right: 2rem;
   z-index: +2;
-  // border: 1px solid black;
   @media (max-width: 625px) {
     width: 100%;
     position: absolute;
@@ -32,7 +31,7 @@ const Head = styled.nav`
     top: 0rem;
     right: 0rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
   }
@@ -55,9 +54,10 @@ const Title = styled.h1`
   // border: 1px solid black;
   @media (max-width: 625px) {
     font-size: 20px;
-    color: white;
+    color: gray;
   }
   @media (max-width: 415px) {
+    color: white;
   }
 `;
 
