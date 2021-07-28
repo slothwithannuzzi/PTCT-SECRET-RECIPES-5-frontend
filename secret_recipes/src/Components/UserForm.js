@@ -7,12 +7,8 @@ import schema from "../validation/userFormSchema";
 import signUp from "./signUp.jpg";
 import styled from "styled-components";
 
-//styled-components
-const Image = styled.img`
-  width: 100%;
-  position: absolute;
-  z-index: -1;
-`;
+//import picture
+import SignUp from "./signUp.jpg";
 
 const OutOfContainer = styled.div`
   display: flex;
@@ -76,7 +72,25 @@ const StyledForm = styled.form`
 `;
 
 const FormSection = styled.section`
-  h2 {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+  margin: 10% 27%;
+  padding: 50px 70px;
+  text-align: center;
+  line-height: 2;
+  animation: fadeIn 2s ease 1 normal;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+  image h2 {
     padding: 0.5%;
     font-size: 3.7rem;
     width: 90%;
@@ -90,6 +104,7 @@ const FormInputsDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   .input-div {
     display: flex;
     flex-direction: column;
@@ -143,6 +158,12 @@ const FormInputsDiv = styled.div`
   ::placeholder {
     text-align: center;
   }
+`;
+
+const Image = styled.img`
+  width: 100%;
+  position: absolute;
+  z-index: -1;
 `;
 
 //disable sign up button
@@ -211,62 +232,64 @@ export default function SignupForm() {
     schema.isValid(userInfo).then((valid) => setDisabled(!valid));
   }, [userInfo]);
   return (
-    <FormSection className="form-container">
-      <h2>Sign up to start adding your favorite recipes!</h2>
+    <div>
+      <Image src={SignUp} alt="fancy-cakes" />
+      <FormSection className="form-container">
+        <h2>Sign up to start adding your favorite recipes!</h2>
+        <StyledForm onSubmit={onSubmit}>
+          <FormInputsDiv className="form-inputs">
+            {/* name text input */}
+            <div className="input-div">
+              <div className="error-div">{formErrors.name}</div>
+              <label id="name">Name:</label>
+              <input
+                type="text"
+                name="name"
+                value={userInfo.name}
+                onChange={onChange}
+                placeholder="Enter your name"
+                maxLength="18"
+                size="18"
+                className="inputBox"
+              />
+            </div>
 
-      <StyledForm onSubmit={onSubmit}>
-        <FormInputsDiv className="form-inputs">
-          {/* name text input */}
-          <div className="input-div">
-            <div className="error-div">{formErrors.name}</div>
-            <label id="name">Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={userInfo.name}
-              onChange={onChange}
-              placeholder="Enter your name"
-              maxLength="18"
-              size="18"
-              className="inputBox"
-            />
-          </div>
+            {/* password text input */}
+            <div className="input-div">
+              <div className="error-div">{formErrors.password}</div>
+              <label id="password">Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={userInfo.password}
+                onChange={onChange}
+                placeholder="enter a password"
+                maxLength="18"
+                size="18"
+                className="inputBox"
+              />
+            </div>
 
-          {/* password text input */}
-          <div className="input-div">
-            <div className="error-div">{formErrors.password}</div>
-            <label id="password">Password:</label>
-            <input
-              type="password"
-              name="password"
-              value={userInfo.password}
-              onChange={onChange}
-              placeholder="enter a password"
-              maxLength="18"
-              size="18"
-              className="inputBox"
-            />
-          </div>
+            {/* email text input */}
+            <div className="input-div">
+              <div className="error-div2">{formErrors.email}</div>
+              <label2 id="email">Email:</label2>
+              <input
+                type="text"
+                name="email"
+                value={userInfo.email}
+                onChange={onChange}
+                placeholder="enter email"
+                maxLength="30"
+                size="30"
+                className="inputBox"
+              />
+            </div>
 
-          {/* email text input */}
-          <div className="input-div">
-            <div className="error-div2">{formErrors.email}</div>
-            <label2 id="email">Email:</label2>
-            <input
-              type="text"
-              name="email"
-              value={userInfo.email}
-              onChange={onChange}
-              placeholder="enter email"
-              maxLength="30"
-              size="30"
-              className="inputBox"
-            />
-          </div>
-
-          <button disabled={disabled}>Sign me up!</button>
-        </FormInputsDiv>
-      </StyledForm>
-    </FormSection>
+            <button disabled={disabled}>Sign me up!</button>
+          </FormInputsDiv>
+        </StyledForm>
+      </FormSection>
+    </div>
   );
 }
