@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import * as yup from "yup";
 import schema from "../validation/userFormSchema";
-import styled from "styled-components";
 
 //import background picture and styled-components
 import signUp from "./signUp.jpg";

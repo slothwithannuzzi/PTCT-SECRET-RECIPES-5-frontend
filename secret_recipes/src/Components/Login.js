@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Redirect, useHistory } from "react-router-dom";
 
-//import backgeround picture and Styled components
-import logIn from "./logIn.jpg";
+//import styled-components and picture
 import styled from "styled-components";
+import logIn from "./logIn.jpg";
 
 //styled-components
 
 const Image = styled.img`
   width: 100%;
   position: absolute;
-  // border: 1px solid black;
   z-index: -1;
   &:before {
     content: "";
@@ -30,7 +29,7 @@ const Image = styled.img`
   }
 `;
 
-const OutOfContainer = styled.div`
+const Center = styled.div`
   display: flex;
   justify-content: center;
 `;
@@ -40,10 +39,14 @@ const Container = styled.div`
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 30px;
-  margin: 20% auto;
-  padding: 10% 10%;
+  margin: 17% auto;
+  padding: 8% 0%;
+  width: 60%;
   text-align: center;
   line-height: 2;
+  display: flex;
+  flex-direction: column;
+
   animation: fadeIn 2s ease 1 normal;
   @keyframes fadeIn {
     0% {
@@ -54,48 +57,67 @@ const Container = styled.div`
       opacity: 1;
     }
   }
+
   @media (max-width: 625px) {
+    border: 1px solid black;
+    background: white;
     margin: 68% auto;
     padding: 5% 5%;
+    border: 0;
   }
 `;
 
-const { push } = useHistory();
+const Texth2 = styled.h2`
+  font-size: 30px;
+  @media (max-width: 625px) {
+    font-size: 20px;
+  }
+`;
 
-const handleChange = (e) => {
-  setFormValues({
-    ...formValues,
-    [e.target.name]: e.target.value,
-  });
-};
+const Login = (props) => {
+  const initialValues = {
+    username: "",
+    password: "",
+  };
+  const [formValues, setFormValues] = useState(initialValues);
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  axios
-    .post(
-      "https://ptct-secret-recipes.herokuapp.com/api/auth/login",
-      formValues
-    )
-    .then((res) => {
-      console.log(res);
-      setError("");
-      localStorage.setItem("token", res.data.token);
-      push("/recipe-list");
-    })
-    .catch((err) => {
-      console.log(err);
-      setError("Invalid username or password.");
+  const [error, setError] = useState("");
+
+  const { push } = useHistory();
+
+  const handleChange = (e) => {
+    setFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
     });
-  setFormValues(initialValues);
-};
+  };
 
-return (
-  <div>
-    <Image src={logIn} alt="login-picture" />
-    <OutOfContainer>
-      <Container>
-        <h2>Log In</h2>
-        <div data-testid="loginForm" className="login-form">
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "https://ptct-secret-recipes.herokuapp.com/api/auth/login",
+        formValues
+      )
+      .then((res) => {
+        console.log(res);
+        setError("");
+        localStorage.setItem("token", res.data.token);
+        push("/recipe-list");
+      })
+      .catch((err) => {
+        console.log(err);
+        setError("Invalid username or password.");
+      });
+    setFormValues(initialValues);
+  };
+
+  return (
+    <div>
+      <Image src={logIn} alt="loginPicture" />å
+      <Center>
+        <Container data-testid="loginForm" className="login-form">
+          <Texth2>Log In</Texth2>
           <form onSubmit={handleSubmit}>
             <label>Username: </label>
             <input
@@ -117,14 +139,13 @@ return (
             <br />
             <button id="submit">Log In</button>
           </form>
-        </div>
-
-        <p id="error" className="error">
-          {error}
-        </p>
-      </Container>
-    </OutOfContainer>
-  </div>
-);
+        </Container>
+      </Center>
+      <p id="error" className="error">
+        {error}
+      </p>
+    </div>
+  );
+};
 
 export default Login;
