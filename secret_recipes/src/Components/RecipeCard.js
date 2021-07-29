@@ -5,12 +5,11 @@ import EditMenu from "./EditMenu";
 
 export default function RecipeCard(props) {
     
-    const { food, deleteHandler } = props;
+    const { food, deleteHandler, setFoods } = props;
     const [edit, toggleEdit] = useState(false);
 
     const editToggler = () => {
         toggleEdit(true);
-        console.log(`Edit for ${food.recipe_name} is toggled to:`, edit)
     }
     
     return(
@@ -22,14 +21,18 @@ export default function RecipeCard(props) {
         <p>{food.ingredients}</p>
         <h3>Instructions</h3>
         <p>{food.instructions}</p>
-        <button onClick={editToggler}>Edit</button>
-        <button onClick={() => deleteHandler(food.recipe_id)}>
-          Delete
-        </button>
+        {
+            (edit === false)
+            ? <div>
+                <button onClick={editToggler}>Edit</button>
+                <button onClick={() => deleteHandler(food.recipe_id)}>Delete</button>
+              </div>
+            : <div/>
+        }
         <div>
             {
             (edit === true)
-                ? <EditMenu food = {food} edit ={edit} toggleEdit = {toggleEdit}/>
+                ? <EditMenu food = {food} edit ={edit} toggleEdit = {toggleEdit} setFoods = {setFoods}/>
                 : <div></div>
             }
         </div>

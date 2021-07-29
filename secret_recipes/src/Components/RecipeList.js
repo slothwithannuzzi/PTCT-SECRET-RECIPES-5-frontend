@@ -6,6 +6,7 @@ import Recipes from "./Recipes-two.jpg";
 
 export default function RecipeList(props) {
   const { foods, setFoods } = props;
+  console.log(foods)
 
 
 
@@ -59,7 +60,7 @@ export default function RecipeList(props) {
           })
           .map((food, index) => (
             <Card className = 'food-list'>
-            <RecipeCard food = {food} key = {index} deleteHandler = {deleteHandler}/>
+            <RecipeCard food = {food} key = {index} deleteHandler = {deleteHandler} setFoods = {setFoods}/>
             </Card>
           ))}
       </Container>
