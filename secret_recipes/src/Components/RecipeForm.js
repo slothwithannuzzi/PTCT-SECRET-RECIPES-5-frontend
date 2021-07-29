@@ -4,7 +4,7 @@ import * as yup from "yup";
 import schema from "../validation/recipeFormSchema";
 import styled from "styled-components";
 //header img
-import Recipes from "./Recipes-two.jpg";
+import addRecipe from "./add.jpg";
 
 //Initial form state
 const initialFormValues = {
@@ -120,6 +120,12 @@ const FormInputsDiv = styled.div`
   }
 `;
 
+const Image = styled.img`
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+`;
+
 export default function RecipeForm(props) {
   const { list, setList } = props;
 
@@ -188,102 +194,103 @@ export default function RecipeForm(props) {
   }, [formValues]);
 
   return (
-    <FormDiv className="form-container">
-      <img className="homeImage" src={Recipes} alt="fancy-food" />
+    <div>
+      <Image src={addRecipe} alt="fancy-food" />
+      <FormDiv className="form-container">
+        <section className="recipe-form-section">
+          <h2>Add Your Favorite Recipe</h2>
 
-      <section className="recipe-form-section">
-        <h2>Add Your Favorite Recipe</h2>
+          <StyledForm onSubmit={onSubmit}>
+            <FormInputsDiv className="form-inputs">
+              {/* name text input */}
+              <div className="input-div even">
+                <div className="error-div">{formErrors.name}</div>
+                <label id="name">Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  value={formValues.name}
+                  onChange={onChange}
+                  placeholder="Enter your recipe name here"
+                  maxLength="40"
+                  size="40"
+                />
+              </div>
 
-        <StyledForm onSubmit={onSubmit}>
-          <FormInputsDiv className="form-inputs">
-            {/* name text input */}
-            <div className="input-div even">
-              <div className="error-div">{formErrors.name}</div>
-              <label id="name">Name</label>
-              <input
-                id="name"
-                type="text"
-                name="name"
-                value={formValues.name}
-                onChange={onChange}
-                placeholder="Enter your recipe name here"
-                maxLength="40"
-                size="40"
-              />
-            </div>
+              {/* source text input */}
+              <div className="input-div odd">
+                <div className="error-div">{formErrors.source}</div>
+                <label id="source">Source</label>
+                <input
+                  id="source"
+                  type="text"
+                  name="source"
+                  value={formValues.source}
+                  onChange={onChange}
+                  placeholder="Where did it come from?"
+                  maxLength="40"
+                  size="40"
+                />
+              </div>
 
-            {/* source text input */}
-            <div className="input-div odd">
-              <div className="error-div">{formErrors.source}</div>
-              <label id="source">Source</label>
-              <input
-                id="source"
-                type="text"
-                name="source"
-                value={formValues.source}
-                onChange={onChange}
-                placeholder="Where did it come from?"
-                maxLength="40"
-                size="40"
-              />
-            </div>
+              {/* category dropdown */}
+              <div className="input-div even">
+                <div className="error-div">{formErrors.category}</div>
+                <label id="category">Category</label>
+                <select
+                  id="category"
+                  name="category"
+                  value={formValues.category}
+                  onChange={onChange}
+                >
+                  <option value="">-- select recipe category --</option>
+                  <option value="Breakfast">Breakfast</option>
+                  <option value="Lunch">Lunch</option>
+                  <option value="Dinner">Dinner</option>
+                  <option value="Dessert">Dessert</option>
+                  <option value="Side">Side Dish</option>
+                  <option value="Appetizer">Appetizer</option>
+                  <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+              </div>
 
-            {/* category dropdown */}
-            <div className="input-div even">
-              <div className="error-div">{formErrors.category}</div>
-              <label id="category">Category</label>
-              <select
-                id="category"
-                name="category"
-                value={formValues.category}
-                onChange={onChange}
-              >
-                <option value="">-- select recipe category --</option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Dessert">Dessert</option>
-                <option value="Side">Side Dish</option>
-                <option value="Appetizer">Appetizer</option>
-                <option value="Miscellaneous">Miscellaneous</option>
-              </select>
-            </div>
+              {/* ingredients text area */}
+              <div className="input-div odd">
+                <div className="error-div">{formErrors.ingredients}</div>
+                <label id="ingredients">Ingredients</label>
+                <textarea
+                  rows={8}
+                  id="ingredients"
+                  type="textarea"
+                  name="ingredients"
+                  value={formValues.ingredients}
+                  onChange={onChange}
+                  placeholder="What ingredients do you need for your dish?"
+                  maxLength="300"
+                />
+              </div>
 
-            {/* ingredients text area */}
-            <div className="input-div odd">
-              <div className="error-div">{formErrors.ingredients}</div>
-              <label id="ingredients">Ingredients</label>
-              <textarea
-                rows={8}
-                id="ingredients"
-                type="textarea"
-                name="ingredients"
-                value={formValues.ingredients}
-                onChange={onChange}
-                placeholder="What ingredients do you need for your dish?"
-                maxLength="300"
-              />
-            </div>
-
-            {/* instructions textarea */}
-            <div className="input-div even">
-              <div className="error-div">{formErrors.instructions}</div>
-              <label id="instructions">Instructions</label>
-              <textarea
-                rows={12}
-                id="instructions"
-                type="textarea"
-                name="instructions"
-                value={formValues.instructions}
-                onChange={onChange}
-                placeholder="What are the steps needed to make this recipe?"
-                maxLength="600"
-              />
-            </div>
-            <button disabled={disabled}>Submit Recipe</button>
-          </FormInputsDiv>
-        </StyledForm>
-      </section>
-    </FormDiv>
+              {/* instructions textarea */}
+              <div className="input-div even">
+                <div className="error-div">{formErrors.instructions}</div>
+                <label id="instructions">Instructions</label>
+                <textarea
+                  rows={12}
+                  id="instructions"
+                  type="textarea"
+                  name="instructions"
+                  value={formValues.instructions}
+                  onChange={onChange}
+                  placeholder="What are the steps needed to make this recipe?"
+                  maxLength="600"
+                />
+              </div>
+              <button disabled={disabled}>Submit Recipe</button>
+            </FormInputsDiv>
+          </StyledForm>
+        </section>
+      </FormDiv>
+    </div>
   );
 }

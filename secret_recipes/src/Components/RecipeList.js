@@ -6,9 +6,7 @@ import Recipes from "./Recipes-two.jpg";
 
 export default function RecipeList(props) {
   const { foods, setFoods } = props;
-  console.log(foods)
-
-
+  console.log(foods);
 
   //Search state
   const [searchTerm, setSearchTerm] = useState("");
@@ -59,8 +57,13 @@ export default function RecipeList(props) {
             } else return null;
           })
           .map((food, index) => (
-            <Card className = 'food-list'>
-            <RecipeCard food = {food} key = {index} deleteHandler = {deleteHandler} setFoods = {setFoods}/>
+            <Card className="food-list">
+              <RecipeCard
+                food={food}
+                key={index}
+                deleteHandler={deleteHandler}
+                setFoods={setFoods}
+              />
             </Card>
           ))}
       </Container>
@@ -82,6 +85,29 @@ const Search = styled.input`
 `;
 
 //Styled-Components
+const Text = styled.h1`
+  // border: 1px solid black;
+  position: absolute;
+  margin-top: 17%;
+  animation: fadeIn 2s ease 1 normal;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+  @media (max-width: 625px) {
+    margin-top: 13%;
+    font-size: 45px;
+  }
+`;
+const TextContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const Container = styled.div`
   margin-top: 36px;
@@ -101,8 +127,17 @@ const Card = styled.div`
   backdrop-filter: blur(5px);
   border-radius: 10px;
   padding: 1%;
-`;
 
+  animation: fadeIn 2s ease 1 normal;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+`;
 const Image = styled.img`
   width: 100%;
 `;
