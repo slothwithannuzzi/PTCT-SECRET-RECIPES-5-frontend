@@ -1,42 +1,90 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Recipes from "./Recipes-two.jpg";
 
 export default function RecipeList(props) {
   const { foods, setFoods } = props;
 
-
   const deleteHandler = (id) => {
-    axios.delete(`https://ptct-secret-recipes.herokuapp.com/api/recipes/${id}`)
-    .then(res =>{ 
-      console.log('Deleted:', res)
-      axios.get('https://ptct-secret-recipes.herokuapp.com/api/recipes')
-      .then(res => setFoods(res.data))
-      .catch(err => console.log(err))
-  })
-    .catch(err => console.log(err))
-  }
+    axios
+      .delete(`https://ptct-secret-recipes.herokuapp.com/api/recipes/${id}`)
+      .then((res) => {
+        console.log("Deleted:", res);
+        axios
+          .get("https://ptct-secret-recipes.herokuapp.com/api/recipes")
+          .then((res) => setFoods(res.data))
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  //Search state
+  const [searchTerm, setSearchTerm] = useState("");
+  //search onChange Helper
+  const change = (evt) => {
+    setSearchTerm(evt.target.value);
+  };
 
   return (
     <div>
       <Image className="homeImage" src={Recipes} alt="fancy-food" />
+      <SearchDiv className="search">
+        <Search
+          type="text"
+          placeholder="Search by recipe name or category"
+          name="search"
+          value={searchTerm}
+          onChange={change}
+        />
+      </SearchDiv>
       <Container className="foodListContainer">
-        {foods.map((food, index) => (
-          <Card className="food-list" key={index}>
-            <h2>{food.recipe_name}</h2>
-            <p>By {food.source}</p>
-            <h3>Ingredients</h3>
-            <p>{food.ingredients}</p>
-            <h3>Instructions</h3>
-            <p>{food.instructions}</p>
-            <button onClick = {() => deleteHandler(food.recipe_id)}>Delete</button>
-          </Card>
-        ))}
+        {foods
+          .filter((recipe) => {
+            if (searchTerm === "") {
+              return recipe;
+            } else if (
+              recipe.recipe_name
+                .toLowerCase()
+                .includes(searchTerm.toLocaleLowerCase()) ||
+              recipe.category
+                .toLocaleLowerCase()
+                .includes(searchTerm.toLocaleLowerCase())
+            ) {
+              return recipe;
+            } else return null;
+          })
+          .map((food, index) => (
+            <Card className="food-list" key={index}>
+              <h2>{food.recipe_name}</h2>
+              <p>By {food.source}</p>
+              <p>Category: {food.category}</p>
+              <h3>Ingredients</h3>
+              <p>{food.ingredients}</p>
+              <h3>Instructions</h3>
+              <p>{food.instructions}</p>
+              <button onClick={() => deleteHandler(food.recipe_id)}>
+                Delete
+              </button>
+            </Card>
+          ))}
       </Container>
     </div>
   );
 }
+
+//Search input style
+const SearchDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const Search = styled.input`
+  margin-top: 10px;
+  width: 300px;
+  height: 40px;
+  font-size: 1.5rem;
+  padding-left: 10px;
+`;
 
 //Styled-Components
 
@@ -57,6 +105,7 @@ const Card = styled.div`
   background: rgba(255, 255, 255, 255);
   backdrop-filter: blur(5px);
   border-radius: 10px;
+  padding: 1%;
 `;
 
 const Image = styled.img`
