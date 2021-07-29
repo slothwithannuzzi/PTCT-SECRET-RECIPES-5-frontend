@@ -239,13 +239,13 @@ export default function RecipeForm(props) {
                 onChange={onChange}
               >
                 <option value="">-- select recipe category --</option>
-                <option value="breakfast">Breakfast</option>
-                <option value="lunch">Lunch</option>
-                <option value="dinner">Dinner</option>
-                <option value="dessert">Dessert</option>
-                <option value="side">Side Dish</option>
-                <option value="appetizer">Appetizer</option>
-                <option value="miscellaneous">Miscellaneous</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Dessert">Dessert</option>
+                <option value="Side">Side Dish</option>
+                <option value="Appetizer">Appetizer</option>
+                <option value="Miscellaneous">Miscellaneous</option>
               </select>
             </div>
 

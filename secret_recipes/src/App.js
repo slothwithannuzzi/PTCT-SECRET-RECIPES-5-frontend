@@ -51,7 +51,6 @@ function App() {
   useEffect(() => {
     axios.get('https://ptct-secret-recipes.herokuapp.com/api/recipes')
     .then(res => {
-      console.log(res)
       setList(res.data);
     })
     .catch(err => console.log('failed to retrieve data:', err))

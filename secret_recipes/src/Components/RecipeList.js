@@ -1,10 +1,21 @@
 import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
+import RecipeCard from "./RecipeCard";
 import Recipes from "./Recipes-two.jpg";
 
 export default function RecipeList(props) {
   const { foods, setFoods } = props;
+  console.log(foods)
+
+
+
+  //Search state
+  const [searchTerm, setSearchTerm] = useState("");
+  //search onChange Helper
+  const change = (evt) => {
+    setSearchTerm(evt.target.value);
+  };
 
   const deleteHandler = (id) => {
     axios
@@ -17,13 +28,6 @@ export default function RecipeList(props) {
           .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
-  };
-
-  //Search state
-  const [searchTerm, setSearchTerm] = useState("");
-  //search onChange Helper
-  const change = (evt) => {
-    setSearchTerm(evt.target.value);
   };
 
   return (
@@ -55,17 +59,8 @@ export default function RecipeList(props) {
             } else return null;
           })
           .map((food, index) => (
-            <Card className="food-list" key={index}>
-              <h2>{food.recipe_name}</h2>
-              <p>By {food.source}</p>
-              <p>Category: {food.category}</p>
-              <h3>Ingredients</h3>
-              <p>{food.ingredients}</p>
-              <h3>Instructions</h3>
-              <p>{food.instructions}</p>
-              <button onClick={() => deleteHandler(food.recipe_id)}>
-                Delete
-              </button>
+            <Card className = 'food-list'>
+            <RecipeCard food = {food} key = {index} deleteHandler = {deleteHandler} setFoods = {setFoods}/>
             </Card>
           ))}
       </Container>
