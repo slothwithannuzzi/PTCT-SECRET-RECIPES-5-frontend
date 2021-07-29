@@ -6,7 +6,6 @@ import Recipes from "./Recipes-two.jpg";
 export default function RecipeList(props) {
   const { foods, setFoods } = props;
 
-
   const deleteHandler = (id) => {
     axios.delete(`https://ptct-secret-recipes.herokuapp.com/api/recipes/${id}`)
     .then(res =>{ 
