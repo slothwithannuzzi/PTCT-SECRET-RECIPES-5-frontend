@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useState } from "react";
-import styled from "styled-components";
+import EditMenu from "./EditMenu";
+
 
 export default function RecipeCard(props) {
     
-    const {index, food, deleteHandler } = props;
+    const { food, deleteHandler } = props;
     const [edit, toggleEdit] = useState(false);
 
     const editToggler = () => {
-        toggleEdit(!edit);
+        toggleEdit(true);
         console.log(`Edit for ${food.recipe_name} is toggled to:`, edit)
     }
     
@@ -25,6 +26,14 @@ export default function RecipeCard(props) {
         <button onClick={() => deleteHandler(food.recipe_id)}>
           Delete
         </button>
+        <div>
+            {
+            (edit === true)
+                ? <EditMenu food = {food} edit ={edit} toggleEdit = {toggleEdit}/>
+                : <div></div>
+            }
+        </div>
+
       </div>
     )
 }
