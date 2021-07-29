@@ -11,13 +11,13 @@ export default yup.object().shape({
     .required("Select a recipe category")
     .oneOf(
       [
-        "breakfast",
-        "lunch",
-        "dinner",
-        "dessert",
-        "side",
-        "appetizer",
-        "miscellaneous",
+        "Breakfast",
+        "Lunch",
+        "Dinner",
+        "Dessert",
+        "Side",
+        "Appetizer",
+        "Miscellaneous",
       ],
       "Select a recipe category"
     ),
