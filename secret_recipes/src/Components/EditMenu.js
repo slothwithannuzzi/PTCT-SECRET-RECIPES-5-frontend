@@ -11,9 +11,18 @@ export default function EditMenu(props) {
         category: food.category,
         ingredients: food.ingredients,
         instructions: food.instructions,
-    }    
+    }
 
     const [formValues, setFormValues] = useState(initialFormValues);
+
+    const editedRecipe = {
+        user_id: 1,
+        recipe_name: formValues.name.trim(),
+        source: formValues.source.trim(),
+        ingredients: formValues.ingredients.trim(),
+        category: formValues.category,
+        instructions: formValues.instructions.trim()
+    }
     
     const onChange = (evt) => {
         const { name, value } = evt.target;
@@ -23,7 +32,18 @@ export default function EditMenu(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // axios.put(`https://ptct-secret-recipes.herokuapp.com/api/recipes/${food.recipe_id}`, )
+        axios.put(`https://ptct-secret-recipes.herokuapp.com/api/recipes/${food.recipe_id}`, editedRecipe)
+        .then(res => {
+            console.log("Edited:", res)
+            axios
+            .get("https://ptct-secret-recipes.herokuapp.com/api/recipes")
+            .then((res) => setFoods(res.data))
+            .catch((err) => console.log(err));
+            
+        })
+        .catch(err => console.log(err))
+
+        toggleEdit(false)
     }
 
     const handleCancel = () => {
