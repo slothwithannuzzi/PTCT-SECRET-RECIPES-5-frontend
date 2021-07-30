@@ -22,20 +22,13 @@ export default function RecipeCard(props) {
         <h3>Instructions</h3>
         <p>{food.instructions}</p>
         {
-            (edit === false)
+            (!edit)
             ? <div>
                 <button onClick={editToggler}>Edit</button>
                 <button onClick={() => deleteHandler(food.recipe_id)}>Delete</button>
               </div>
-            : <div/>
+            : <EditMenu food = {food} edit ={edit} toggleEdit = {toggleEdit} setFoods = {setFoods}/>
         }
-        <div>
-            {
-            (edit === true)
-                ? <EditMenu food = {food} edit ={edit} toggleEdit = {toggleEdit} setFoods = {setFoods}/>
-                : <div></div>
-            }
-        </div>
 
       </div>
     )
