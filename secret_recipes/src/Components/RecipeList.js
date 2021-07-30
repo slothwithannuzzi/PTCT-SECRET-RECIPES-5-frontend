@@ -57,7 +57,7 @@ export default function RecipeList(props) {
             } else return null;
           })
           .map((food, index) => (
-            <Card className="food-list">
+            <Card className="food-list" key = {index}>
               <RecipeCard
                 food={food}
                 key={index}
