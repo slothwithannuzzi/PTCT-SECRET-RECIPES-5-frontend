@@ -3,8 +3,7 @@ import axios from "axios";
 import * as yup from "yup";
 import schema from "../validation/recipeFormSchema";
 import styled from "styled-components";
-import Footer from "./Footer";
-import home from "./home.jpg";
+//header img
 import addRecipe from "./add.jpg";
 
 //Initial form state
@@ -123,6 +122,8 @@ const FormInputsDiv = styled.div`
 
 const Image = styled.img`
   width: 100%;
+  position: absolute;
+  z-index: -1;
 `;
 
 export default function RecipeForm(props) {
@@ -194,7 +195,7 @@ export default function RecipeForm(props) {
 
   return (
     <div>
-      <Image className="homeImage" src={home} alt="fancy-food" />
+      <Image src={addRecipe} alt="fancy-food" />
       <FormDiv className="form-container">
         <section className="recipe-form-section">
           <h2>Add Your Favorite Recipe</h2>
@@ -290,7 +291,6 @@ export default function RecipeForm(props) {
           </StyledForm>
         </section>
       </FormDiv>
-      <Footer />
     </div>
   );
 }
