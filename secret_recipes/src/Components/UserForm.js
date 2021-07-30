@@ -134,7 +134,7 @@ const FormInputsDiv = styled.div`
   label2 {
     font-size: 2.5rem;
     font-weight: bold;
-    padding-left: 30%;
+    padding-left: 10%;
     padding-bottom: 1rem;
   }
   label input,
