@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import RecipeCard from "./RecipeCard";
 import Recipes from "./Recipes-two.jpg";
+import Footer from "./Footer";
 
 export default function RecipeList(props) {
   const { foods, setFoods } = props;
@@ -67,6 +68,7 @@ export default function RecipeList(props) {
             </Card>
           ))}
       </Container>
+      <Footer />
     </div>
   );
 }

@@ -23,6 +23,12 @@ const Head = styled.nav`
   top: 2rem;
   right: 2rem;
   z-index: +2;
+  :hover {
+    background-color:#71717a;
+    opacity:0.4;
+    
+	}
+
   @media (max-width: 625px) {
     width: 100%;
     position: absolute;
@@ -34,6 +40,7 @@ const Head = styled.nav`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    align-content:right
   }
   @media (max-width: 415px) {
     position: absolute;
@@ -63,6 +70,7 @@ const Title = styled.h1`
 
 const Bar = styled.div`
   width: 100%;
+  opacity:0.4;
   // border: 1px solid black;
   @media (max-width: 625px) {
     width: 100%;
@@ -74,6 +82,9 @@ const Bar = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 20%;
+  }
+  .navPanel:hover{
+    opacity:1;
   }
   a {
     width: 100%;
@@ -126,6 +137,7 @@ function App() {
       <Head>
         <Title>Secret Family Recipes</Title>
         <Bar>
+          <div className="navPanel">
           <Link to="/">Home</Link>
           <Link to="/login">Log In</Link>
           <Link to="/register">Sign Up</Link>
@@ -134,6 +146,7 @@ function App() {
           <Link to="/" onClick={logout}>
             Log Out
           </Link>
+          </div>
         </Bar>
       </Head>
       <Switch>
